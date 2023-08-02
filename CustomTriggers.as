@@ -137,7 +137,7 @@ void OnCheckpointCountChanged(SimulationManager@ simManager, int count, int targ
 void OnLapsCountChanged(SimulationManager@ simManager, int count, int target){
 }
 void Render(){
-    UI::Begin("Trigger Manager");
+    UI::Begin("Custom Triggers##LinuxCatCustomTriggers");
     UI::BeginTabBar("Tabs");
     CommandList l;
     int deleted = -1;
@@ -149,17 +149,11 @@ void Render(){
     }
     for(uint i = 0; i<triggers.Length; i++){
         if (UI::BeginTabItem("Trigger " + (i+1))){
-            triggers[i].position.x = UI::SliderFloat("PosX", triggers[i].position.x, 0,600);
-            triggers[i].position.y = UI::SliderFloat("PosY", triggers[i].position.y, 0,600);
-            triggers[i].position.z = UI::SliderFloat("PosZ", triggers[i].position.z, 0,600);
-            triggers[i].rotation.x = UI::SliderFloat("RotX", triggers[i].rotation.x, 0,360);
-            triggers[i].rotation.y = UI::SliderFloat("RotY", triggers[i].rotation.y, 0,360);
-            triggers[i].rotation.z = UI::SliderFloat("RotZ", triggers[i].rotation.z, 0,360);
-            triggers[i].size.x = UI::SliderFloat("SizeX", triggers[i].size.x,0.001,20);
-            triggers[i].size.y = UI::SliderFloat("SizeY", triggers[i].size.y,0.001,20);
-            triggers[i].size.z = UI::SliderFloat("SizeZ", triggers[i].size.z,0.001,20);
+            UI::DragFloat3("Position", triggers[i].position, 0.1f);
+            UI::DragFloat3("Rotation", triggers[i].rotation, 1.0f, 0.0f, 360.0f);
+            UI::DragFloat3("Size", triggers[i].size, 0.5f, 0.0001f);
 
-            UI::Text("" + triggers[i].isInside(carPos));
+            UI::Text("Car Inside Trigger : " + (triggers[i].isInside(carPos)?"Yes":"No"));
             if (UI::Button("Delete")){
                 deleted = i;
             }
