@@ -201,7 +201,7 @@ void OnDisabled(){
 }
 PluginInfo@ GetPluginInfo(){
     auto info = PluginInfo();
-    info.Name = "Trigger Manager";
+    info.Name = "Custom Triggers";
     info.Author = "LinuxCat";
     info.Version = "v1.0.0";
     info.Description = "Manage custom triggers";
