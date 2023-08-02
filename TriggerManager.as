@@ -53,8 +53,8 @@ void Render(){
     }
     for(uint i = 0; i<triggers.Length; i++){
         if (UI::BeginTabItem(triggers[i].name+"##"+i)){
-            UI::DragFloat3("Pos", triggers[i].position, 5.0f);
-            UI::DragFloat3("Size", triggers[i].size, 50.0f);
+            UI::DragFloat3("Pos", triggers[i].position, 0.5f);
+            UI::DragFloat3("Size", triggers[i].size, 1.0f);
             newName = UI::InputText("Name", (newName=="\n"||newName==triggers[i].name)?triggers[i].name:newName);
             if (UI::Button("Apply")){
                 triggers[i].name = newName;
